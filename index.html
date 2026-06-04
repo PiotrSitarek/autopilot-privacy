@@ -434,12 +434,11 @@
   <nav class="nav">
     <button class="nav-logo" onclick="showView('home')">Auto<span>Pilot</span></button>
     <div class="nav-links">
-      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Strona główna" data-en="Home">Strona główna</button>
+      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Aplikacja" data-en="Home">Aplikacja</button>
       <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</button>
     </div>
     <button class="nav-lang" onclick="toggleLang()">
-      <span id="langFlag">🇬🇧</span>
-      <span id="langLabel">English</span>
+      <span id="langLabel">EN</span>
     </button>
   </nav>
 
@@ -769,8 +768,7 @@
     function applyLang() {
       const isPl = lang === 'pl';
       document.querySelectorAll('[data-pl]').forEach(el => { el.innerHTML = isPl ? el.dataset.pl : el.dataset.en; });
-      document.getElementById('langFlag').textContent  = isPl ? '🇬🇧' : '🇵🇱';
-      document.getElementById('langLabel').textContent = isPl ? 'English' : 'Polski';
+      document.getElementById('langLabel').textContent = isPl ? 'EN' : 'PL';
       document.documentElement.lang = lang;
       document.title = isPl ? 'AutoPilot – Terminy Twojego auta pod kontrolą' : 'AutoPilot – Your car\'s deadlines, under control';
       // sync pp lang buttons to global lang
