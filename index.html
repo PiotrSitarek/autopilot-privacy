@@ -3,25 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Polityka prywatności – AutoPilot</title>
+  <title>AutoPilot – Terminy Twojego auta pod kontrolą</title>
+  <meta name="description" content="AutoPilot przypomni Ci o przeglądzie technicznym, OC, wymianie oleju i opon. Zero konta. Zero chmury. Dane zostają na Twoim telefonie." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #f6f8fb;
-      --surface: #ffffff;
-      --text: #17212b;
-      --muted: #64748b;
-      --border: #dbe3ea;
-      --primary: #18324a;
-      --accent: #8fa3b8;
-      --danger: #b94343;
-      --highlight-bg: #eef3f8;
-      --highlight-bar: #18324a;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg:          #051542;
+      --surface:     #0B1F56;
+      --card:        #102967;
+      --surface-var: #173574;
+      --primary:     #14489F;
+      --primary-hi:  #1a55b8;
+      --tertiary:    #1E4FA4;
+      --text:        #FBFBFC;
+      --text-sec:    #E6E9F2;
+      --text-muted:  #AAB6D3;
+      --border:      rgba(255,255,255,.08);
+      --radius:      16px;
     }
 
     html { scroll-behavior: smooth; }
@@ -29,419 +31,769 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 16px;
-      line-height: 1.65;
-      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    nav {
-      background: var(--primary);
-      padding: 0 24px;
+    /* ─────────────────── NAV ─────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 56px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 0 28px;
+      background: rgba(5,21,66,.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
     }
 
-    .nav-brand {
+    .nav-logo { appearance: none; background: none !important; border: none !important; outline: none; box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.01em;
+      text-decoration: none;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--text-muted); font-weight: 400; margin-left: 1px; }
+
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      text-decoration: none;
+      gap: 4px;
+      flex: 1;
     }
 
-    .nav-contact {
-      color: var(--accent);
+    .nav-link {
+      background: none;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 13px;
-      text-decoration: none;
-      letter-spacing: 0.01em;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,.06); }
+    .nav-link.active { color: var(--text); background: rgba(20,72,159,.3); }
+
+    .nav-lang {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-sec);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 5px 14px;
+      display: flex; align-items: center; gap: 6px;
+      transition: background .2s, color .2s;
+      flex-shrink: 0;
+    }
+    .nav-lang:hover { background: var(--surface-var); color: var(--text); }
+
+    /* ─────────────────── VIEWS ─────────────────── */
+    .view { display: none; padding-top: 56px; }
+    .view.active { display: block; }
+
+    /* ─────────────────── HOME / HERO ─────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 72px 24px 72px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .nav-contact:hover { color: #fff; }
-
-    main {
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% -10%, rgba(20,72,159,.55) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 90%, rgba(30,79,164,.25) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    .page-header {
-      margin-bottom: 40px;
-      padding-bottom: 28px;
-    }
-
-    .header-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: clamp(28px, 5vw, 38px);
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    .page-subtitle {
-      font-size: 16px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .page-date {
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--muted);
-      background: var(--highlight-bg);
-      padding: 4px 12px;
-      border-radius: 4px;
-    }
-
-    .lang-nav {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 40px;
-    }
-
-    .lang-btn {
-      padding: 6px 16px;
-      font-size: 13px;
+      gap: 7px;
+      background: rgba(20,72,159,.25);
+      border: 1px solid rgba(20,72,159,.5);
+      border-radius: 20px;
+      color: var(--text-sec);
+      font-size: 11px;
       font-weight: 600;
-      border: 1.5px solid var(--border);
-      border-radius: 6px;
-      background: var(--surface);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.15s;
-      text-decoration: none;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      margin-bottom: 32px;
+      animation: fadeUp .6s ease both;
     }
 
-    .lang-btn.active,
-    .lang-btn:hover {
+    .hero-title {
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      margin-bottom: 24px;
+      animation: fadeUp .6s .1s ease both;
+    }
+    .hero-title em { font-style: italic; font-weight: 600; color: var(--text-sec); opacity: .8; }
+
+    .hero-sub {
+      font-size: clamp(.95rem, 2.2vw, 1.12rem);
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto 44px;
+      font-weight: 400;
+      animation: fadeUp .6s .2s ease both;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      animation: fadeUp .6s .3s ease both;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 13px 22px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .store-btn:hover { transform: translateY(-2px); background: var(--primary-hi); box-shadow: 0 10px 32px rgba(20,72,159,.5); }
+    .store-btn.secondary { background: var(--card); border: 1px solid var(--border); }
+    .store-btn.secondary:hover { background: var(--surface-var); box-shadow: 0 8px 24px rgba(0,0,0,.3); }
+    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .store-label { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+    .store-label small { font-size: 10px; font-weight: 400; opacity: .65; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* phone mockup */
+    .mockup-wrap { margin-top: 60px; animation: fadeUp .7s .4s ease both; }
+
+    .phone {
+      width: 224px; height: 448px;
+      background: var(--surface);
+      border-radius: 38px;
+      border: 1.5px solid rgba(255,255,255,.1);
+      margin: 0 auto;
+      overflow: hidden;
+      box-shadow: 0 48px 96px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
     }
 
-    .section {
-      padding: 28px 0;
+    .phone-notch { width: 68px; height: 22px; background: var(--bg); border-radius: 0 0 14px 14px; margin: 0 auto; }
+    .phone-screen { padding: 12px 14px; }
+    .phone-greeting { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+    .phone-title-small { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+
+    .phone-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .phone-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-red    { background: #FF5F5F; }
+    .dot-yellow { background: #F5C518; }
+    .dot-green  { background: #30D158; }
+
+    .phone-card-text { flex: 1; }
+    .phone-card-title { font-size: 10px; font-weight: 600; }
+    .phone-card-sub   { font-size: 9px; color: var(--text-muted); }
+    .phone-card-date  { font-size: 9px; color: var(--text-muted); text-align: right; white-space: nowrap; }
+
+    /* sections */
+    .section { padding: 96px 24px; max-width: 880px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.02em; margin-bottom: 20px;
+    }
+
+    .section-body { font-size: 1.05rem; color: var(--text-muted); max-width: 540px; line-height: 1.7; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px; margin-top: 52px;
+    }
+
+    .feat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      transition: border-color .25s, transform .25s, background .25s;
+    }
+    .feat-card:hover { border-color: rgba(20,72,159,.6); background: var(--surface-var); transform: translateY(-3px); }
+
+    .feat-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+    .feat-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+    .feat-desc  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    .privacy-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 40px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .privacy-block::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,72,159,.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .privacy-icon  { font-size: 44px; margin-bottom: 20px; display: block; }
+    .privacy-title { font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 16px; }
+    .privacy-body  { color: var(--text-muted); max-width: 460px; margin: 0 auto 32px; line-height: 1.7; }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .pill {
+      background: rgba(20,72,159,.2);
+      border: 1px solid rgba(20,72,159,.4);
+      color: var(--text-sec);
+      border-radius: 20px;
+      font-size: 13px; font-weight: 500; padding: 6px 18px;
+    }
+
+    .footer-cta {
+      text-align: center;
+      padding: 80px 24px 52px;
       border-top: 1px solid var(--border);
     }
+    .footer-title { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px; }
+    .footer-sub   { color: var(--text-muted); margin-bottom: 36px; }
+    .footer-note  { margin-top: 52px; font-size: 12px; color: var(--text-muted); opacity: .4; }
+    .footer-note a { color: var(--text-muted); text-decoration: none; }
+    .footer-note a:hover { color: var(--text); }
 
-    .section:first-of-type { border-top: none; }
+    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 24px; }
 
-    h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--primary);
+    /* ─────────────────── PRIVACY PAGE ─────────────────── */
+    .pp-wrap { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
+
+    .pp-header { margin-bottom: 40px; }
+
+    .pp-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+    }
+
+    .pp-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px;
+    }
+
+    .pp-subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; }
+
+    .pp-date {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--text-muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 4px 12px; border-radius: 6px;
+    }
+
+
+      padding: 6px 18px; font-size: 13px; font-weight: 600;
+      border: 1px solid var(--border); border-radius: 8px;
+      background: transparent; color: var(--text-muted);
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all .15s;
+    }
+
+    .pp-section { padding: 28px 0; border-top: 1px solid var(--border); }
+    .pp-section:first-of-type { border-top: none; }
+
+    .pp-section h2 {
+      font-size: 17px; font-weight: 700; color: var(--text);
       margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
     }
 
-    h2 .section-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--primary); color: var(--text);
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
     }
 
-    p {
-      color: var(--text);
-      margin-bottom: 12px;
-    }
+    .pp-section p { color: var(--text-sec); margin-bottom: 12px; font-size: 15px; line-height: 1.7; }
+    .pp-section p:last-child { margin-bottom: 0; }
 
-    p:last-child { margin-bottom: 0; }
+    .pp-section ul { padding-left: 20px; margin: 10px 0; }
+    .pp-section li { margin-bottom: 6px; color: var(--text-sec); font-size: 15px; }
 
-    ul {
-      padding-left: 20px;
-      margin: 10px 0;
-    }
-
-    li {
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .highlight {
-      background: var(--highlight-bg);
-      border-left: 3px solid var(--highlight-bar);
+    .pp-highlight {
+      background: var(--card);
+      border-left: 3px solid var(--primary);
       padding: 14px 18px;
-      border-radius: 0 6px 6px 0;
+      border-radius: 0 8px 8px 0;
       margin: 16px 0;
-      font-size: 15px;
-      color: var(--primary);
-    }
-
-    .contact-block {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 8px;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--highlight-bg);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contact-icon svg {
-      width: 20px;
-      height: 20px;
-      color: var(--primary);
-    }
-
-    .contact-info {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--text-sec);
+      line-height: 1.65;
+    }
+    .pp-highlight a { color: var(--text-sec); }
+
+    .pp-contact {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px; margin-top: 8px;
     }
 
-    .contact-email {
-      display: block;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--primary);
-      text-decoration: none;
-      word-break: break-all; /* POPRAWKA: zapobiega wychodzeniu adresu poza ramkę */
+    .pp-contact-icon {
+      width: 40px; height: 40px;
+      background: rgba(20,72,159,.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
+    .pp-contact-icon svg { width: 20px; height: 20px; color: var(--text-sec); }
 
-    .contact-email:hover { text-decoration: underline; }
+    .pp-contact-info { font-size: 13px; color: var(--text-muted); }
+    .pp-contact-email {
+      display: block; font-size: 15px; font-weight: 600;
+      color: var(--text); text-decoration: none; word-break: break-all;
+    }
+    .pp-contact-email:hover { text-decoration: underline; }
 
-    .lang-section { display: none; }
-    .lang-section.visible { display: block; }
+    .pp-lang-section { display: none; }
+    .pp-lang-section.visible { display: block; }
 
-    footer {
+    .pp-footer {
       border-top: 1px solid var(--border);
       padding: 32px 24px;
       text-align: center;
-      font-size: 13px;
-      color: var(--muted);
+      font-size: 12px;
+      color: var(--text-muted);
+      opacity: .5;
     }
 
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
+    /* ─────────────────── ANIMATIONS ─────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    footer a:hover { text-decoration: underline; }
-
+    /* ─────────────────── RESPONSIVE ─────────────────── */
     @media (max-width: 600px) {
-      main { padding: 32px 16px 60px; }
-      nav { padding: 0 16px; }
+      .nav { padding: 0 16px; }
+      .privacy-block { padding: 36px 20px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .pp-wrap { padding: 40px 16px 60px; }
+      .pp-contact { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
+    @media (max-width: 380px) {
+      .features-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-brand" href="#">
-    AutoPilot
-  </a>
-  <a class="nav-contact" href="mailto:mobile.apps.developer.pl@gmail.com">Kontakt</a>
-</nav>
+  <!-- ═══════════════ NAV ═══════════════ -->
+  <nav class="nav">
+    <button class="nav-logo" onclick="showView('home')">Auto<span>Pilot</span></button>
+    <div class="nav-links">
+      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Strona główna" data-en="Home">Strona główna</button>
+      <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</button>
+    </div>
+    <button class="nav-lang" onclick="toggleLang()">
+      <span id="langFlag">🇬🇧</span>
+      <span id="langLabel">English</span>
+    </button>
+  </nav>
 
-<main>
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <div id="view-home" class="view active">
 
-  <div class="page-header">
-    <div class="header-label">Dokument prawny</div>
-    <h1>Polityka prywatności</h1>
-    <p class="page-subtitle">Wyjaśniamy, jakie dane są przetwarzane i gdzie są przechowywane.</p>
-    <span class="page-date">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Data aktualizacji: 02.06.2026
-    </span>
-  </div>
+    <section class="hero">
+      <div class="badge" data-pl="🚗 Aplikacja mobilna" data-en="🚗 Mobile App">🚗 Aplikacja mobilna</div>
 
-  <div class="lang-nav">
-    <button class="lang-btn active" onclick="setLang('pl', this)">Polski</button>
-    <button class="lang-btn" onclick="setLang('en', this)">English</button>
-  </div>
+      <h1 class="hero-title"
+          data-pl="Twoje auto ma terminy.<br><em>AutoPilot je pamięta.</em>"
+          data-en="Your car has deadlines.<br><em>AutoPilot remembers them.</em>">
+        Twoje auto ma terminy.<br><em>AutoPilot je pamięta.</em>
+      </h1>
 
-  <!-- POLISH -->
-  <div id="lang-pl" class="lang-section visible">
+      <p class="hero-sub"
+         data-pl="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem."
+         data-en="MOT, insurance, oil, tires — all your car's deadlines in one place, with advance reminders.">
+        Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem.
+      </p>
 
-    <div class="section">
-      <h2><span class="section-num">1</span>Administrator</h2>
-      <p>Administratorem danych przetwarzanych przez aplikację AutoPilot jest:</p>
-      <div class="highlight">
-        <strong>Piotr Sitarek</strong><br/>
-        Kontakt: <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+      <div class="cta-row">
+        <a href="https://apps.apple.com/us/app/autopilot/id6773058293" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span class="store-label">
+            <small data-pl="Pobierz w" data-en="Download on the">Pobierz w</small>
+            App Store
+          </span>
+        </a>
+        <a href="#" class="store-btn secondary" style="opacity:.4;cursor:default;pointer-events:none;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.2.8.2 1.19 0L16.79 12 4.37.24c-.39-.2-.82-.2-1.19 0C2.45.65 2 1.37 2 2.16v19.68c0 .79.45 1.51 1.18 1.92zM20.62 10.1l-2.8-1.58-3.37 3.48 3.37 3.48 2.83-1.6c.8-.45 1.35-1.27 1.35-2.14 0-.87-.55-1.69-1.38-2.14zM5.17 1.56L16.07 10.9l-3.09 3.09L5.17 1.56zm0 20.88l7.81-12.43 3.09 3.09L5.17 22.44z"/></svg>
+          <span class="store-label">
+            <small data-pl="Wkrótce na" data-en="Coming soon on">Wkrótce na</small>
+            Google Play
+          </span>
+        </a>
       </div>
-    </div>
 
-    <div class="section">
-      <h2><span class="section-num">2</span>Jakie dane są zbierane</h2>
-      <p>Aplikacja AutoPilot może przechowywać dane dotyczące pojazdów wprowadzone przez użytkownika, w szczególności:</p>
-      <ul>
-        <li>numer rejestracyjny pojazdu,</li>
-        <li>numer VIN,</li>
-        <li>marka, model, rok produkcji i nazwa pojazdu,</li>
-        <li>daty przeglądów technicznych, ubezpieczenia OC oraz innych terminów serwisowych,</li>
-        <li>notatki i ustawienia przypomnień.</li>
-      </ul>
-      <div class="highlight">
-        Dane te są przechowywane lokalnie na urządzeniu użytkownika w lokalnej bazie danych aplikacji oraz ustawieniach aplikacji. Aplikacja nie wymaga konta użytkownika ani logowania.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">3</span>Cel przetwarzania danych</h2>
-      <p>Dane są przetwarzane w celu:</p>
-      <ul>
-        <li>zapisania pojazdów w aplikacji,</li>
-        <li>wyświetlania terminów dotyczących pojazdu,</li>
-        <li>tworzenia i obsługi lokalnych przypomnień o przeglądach, ubezpieczeniu OC i innych terminach,</li>
-        <li>zapamiętywania ustawień aplikacji.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">4</span>Czy dane są wysyłane na zewnątrz</h2>
-      <p>Co do zasady dane pojazdów są przechowywane lokalnie na urządzeniu.</p>
-      <p>Podczas dodawania pojazdu użytkownik może skorzystać z funkcji pobrania danych z serwisu <strong>historiapojazdu.gov.pl</strong>. W takim przypadku aplikacja wysyła do serwisu zewnętrznego dane wymagane do zapytania, takie jak numer rejestracyjny, VIN oraz data pierwszej rejestracji. Zapytanie jest wykonywane tylko w ramach tej funkcji i służy pobraniu danych pojazdu.</p>
-      <div class="highlight">
-        AutoPilot nie sprzedaje danych użytkownika i nie udostępnia ich podmiotom trzecim w celach marketingowych.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">5</span>Jak użytkownik może usunąć dane</h2>
-      <p>Użytkownik może usunąć dane pojazdu bezpośrednio w aplikacji poprzez usunięcie pojazdu. Usunięcie pojazdu usuwa również przypomnienia powiązane z tym pojazdem.</p>
-      <p>Użytkownik może również usunąć dane aplikacji z poziomu ustawień systemu operacyjnego urządzenia lub odinstalować aplikację.</p>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">6</span>Kontakt</h2>
-      <p>W sprawach dotyczących prywatności i danych przetwarzanych przez aplikację prosimy o kontakt:</p>
-      <div class="contact-block">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <div>
-          <span class="contact-info">Adres e-mail</span>
-          <a class="contact-email" href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+      <div class="mockup-wrap">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <p class="phone-greeting" id="m-greeting">Dzień dobry 👋</p>
+            <p class="phone-title-small" id="m-title">Nadchodzące terminy</p>
+            <div class="phone-card">
+              <div class="phone-dot dot-red"></div>
+              <div class="phone-card-text">
+                <div class="phone-card-title" id="m-c1t">Przegląd techniczny</div>
+                <div class="phone-card-sub">Toyota Corolla</div>
+              </div>
+              <div class="phone-card-date" id="m-c1d">Po terminie</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-dot dot-yellow"></div>
+              <div class="phone-card-text">
+                <div class="phone-card-title" id="m-c2t">Ubezpieczenie OC</div>
+                <div class="phone-card-sub">Toyota Corolla</div>
+              </div>
+              <div class="phone-card-date" id="m-c2d">Za 12 dni</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-dot dot-green"></div>
+              <div class="phone-card-text">
+                <div class="phone-card-title" id="m-c3t">Wymiana oleju</div>
+                <div class="phone-card-sub">Toyota Corolla</div>
+              </div>
+              <div class="phone-card-date" id="m-c3d">Za 45 dni</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-  </div>
+    <div class="divider"></div>
 
-  <!-- ENGLISH -->
-  <div id="lang-en" class="lang-section">
-
-    <div class="section">
-      <h2><span class="section-num">1</span>Controller</h2>
-      <p>The controller of data processed by the AutoPilot app is:</p>
-      <div class="highlight">
-        <strong>Piotr Sitarek</strong><br/>
-        Contact: <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">2</span>What data is collected</h2>
-      <p>The AutoPilot app may store vehicle data entered by the user, including:</p>
-      <ul>
-        <li>vehicle registration number,</li>
-        <li>VIN,</li>
-        <li>vehicle make, model, production year, and custom vehicle name,</li>
-        <li>technical inspection, motor insurance, and other service deadline dates,</li>
-        <li>notes and reminder settings.</li>
-      </ul>
-      <div class="highlight">
-        This data is stored locally on the user's device in the app's local database and app settings. The app does not require a user account or login.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">3</span>Purpose of processing</h2>
-      <p>The data is processed to:</p>
-      <ul>
-        <li>save vehicles in the app,</li>
-        <li>display vehicle-related deadlines,</li>
-        <li>create and manage local reminders for technical inspections, motor insurance, and other deadlines,</li>
-        <li>remember app settings.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">4</span>Whether data is sent outside the device</h2>
-      <p>In general, vehicle data is stored locally on the device.</p>
-      <p>When adding a vehicle, the user may use the feature that retrieves vehicle data from <strong>historiapojazdu.gov.pl</strong>. In that case, the app sends the data required for the query to the external service, such as the registration number, VIN, and first registration date. The request is made only as part of this feature and is used to retrieve vehicle data.</p>
-      <div class="highlight">
-        AutoPilot does not sell user data and does not share it with third parties for marketing purposes.
-      </div>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">5</span>How users can delete data</h2>
-      <p>Users can delete vehicle data directly in the app by deleting a vehicle. Deleting a vehicle also deletes reminders associated with that vehicle.</p>
-      <p>Users can also remove app data from the operating system settings of their device or uninstall the app.</p>
-    </div>
-
-    <div class="section">
-      <h2><span class="section-num">6</span>Contact details</h2>
-      <p>For privacy-related matters and questions about data processed by the app, please contact:</p>
-      <div class="contact-block">
-        <div>
-          <span class="contact-info">Email address</span>
-          <a class="contact-email" href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+    <section class="section">
+      <p class="section-label" data-pl="Problem" data-en="The Problem">Problem</p>
+      <h2 class="section-title"
+          data-pl="Mandat za brak OC to nie pech. To zapomnienie."
+          data-en="A fine for lapsed insurance isn't bad luck. It's forgetting.">
+        Mandat za brak OC to nie pech. To zapomnienie.
+      </h2>
+      <p class="section-body"
+         data-pl="Terminy przeglądów i ubezpieczeń gubią się w codziennym chaosie. AutoPilot pilnuje ich za Ciebie — bez kont, bez subskrypcji, bez dostępu do Internetu."
+         data-en="MOT and insurance deadlines get lost in everyday chaos. AutoPilot tracks them for you — no accounts, no subscriptions, no internet required.">
+        Terminy przeglądów i ubezpieczeń gubią się w codziennym chaosie. AutoPilot pilnuje ich za Ciebie — bez kont, bez subskrypcji, bez dostępu do Internetu.
+      </p>
+      <div class="features-grid">
+        <div class="feat-card">
+          <span class="feat-icon">🔍</span>
+          <div class="feat-title" data-pl="Przegląd techniczny" data-en="MOT Inspection">Przegląd techniczny</div>
+          <p class="feat-desc" data-pl="Przypomnienie 14 dni przed terminem, żebyś zdążył się umówić." data-en="Reminder 14 days before so you have time to book.">Przypomnienie 14 dni przed terminem, żebyś zdążył się umówić.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🛡️</span>
+          <div class="feat-title" data-pl="Ubezpieczenie OC" data-en="Car Insurance">Ubezpieczenie OC</div>
+          <p class="feat-desc" data-pl="30 dni wyprzedzenia — czas na porównanie ofert bez stresu." data-en="30 days in advance — time to compare offers without stress.">30 dni wyprzedzenia — czas na porównanie ofert bez stresu.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🛢️</span>
+          <div class="feat-title" data-pl="Wymiana oleju" data-en="Oil Change">Wymiana oleju</div>
+          <p class="feat-desc" data-pl="Ustaw termin, zapomnij — AutoPilot Cię uprzedzi." data-en="Set the date, forget it — AutoPilot will remind you.">Ustaw termin, zapomnij — AutoPilot Cię uprzedzi.</p>
+        </div>
+        <div class="feat-card">
+          <span class="feat-icon">🔄</span>
+          <div class="feat-title" data-pl="Zmiana opon" data-en="Tire Change">Zmiana opon</div>
+          <p class="feat-desc" data-pl="Sezonowa zmiana opon nigdy więcej Cię nie zaskoczy." data-en="Seasonal tire swaps will never catch you off guard again.">Sezonowa zmiana opon nigdy więcej Cię nie zaskoczy.</p>
         </div>
       </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="privacy-block">
+        <span class="privacy-icon">🔒</span>
+        <h2 class="privacy-title"
+            data-pl="Zero konta. Zero chmury."
+            data-en="Zero account. Zero cloud.">
+          Zero konta. Zero chmury.
+        </h2>
+        <p class="privacy-body"
+           data-pl="Wszystkie dane zostają na Twoim telefonie. Żaden serwer ich nie widzi. Żadna firma ich nie przetwarza. To Twoje auto i Twoje dane."
+           data-en="All your data stays on your phone. No server ever sees it. No company processes it. It's your car and your data.">
+          Wszystkie dane zostają na Twoim telefonie. Żaden serwer ich nie widzi. Żadna firma ich nie przetwarza. To Twoje auto i Twoje dane.
+        </p>
+        <div class="pills">
+          <span class="pill" data-pl="Bez rejestracji" data-en="No sign-up">Bez rejestracji</span>
+          <span class="pill" data-pl="Bez subskrypcji" data-en="No subscription">Bez subskrypcji</span>
+          <span class="pill" data-pl="Dane lokalne" data-en="Local data only">Dane lokalne</span>
+          <span class="pill" data-pl="Bez reklam" data-en="No ads">Bez reklam</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="footer-cta">
+      <h2 class="footer-title"
+          data-pl="Kiedy ostatnio sprawdzałeś termin przeglądu?"
+          data-en="When did you last check your MOT date?">
+        Kiedy ostatnio sprawdzałeś termin przeglądu?
+      </h2>
+      <p class="footer-sub"
+         data-pl="Zainstaluj bezpłatnie i nigdy więcej się nie martw."
+         data-en="Install for free and never worry about it again.">
+        Zainstaluj bezpłatnie i nigdy więcej się nie martw.
+      </p>
+      <div class="cta-row">
+        <a href="https://apps.apple.com/us/app/autopilot/id6773058293" class="store-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span class="store-label">
+            <small data-pl="Pobierz w" data-en="Download on the">Pobierz w</small>
+            App Store
+          </span>
+        </a>
+        <a href="#" class="store-btn secondary" style="opacity:.4;cursor:default;pointer-events:none;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.37.2.8.2 1.19 0L16.79 12 4.37.24c-.39-.2-.82-.2-1.19 0C2.45.65 2 1.37 2 2.16v19.68c0 .79.45 1.51 1.18 1.92zM20.62 10.1l-2.8-1.58-3.37 3.48 3.37 3.48 2.83-1.6c.8-.45 1.35-1.27 1.35-2.14 0-.87-.55-1.69-1.38-2.14zM5.17 1.56L16.07 10.9l-3.09 3.09L5.17 1.56zm0 20.88l7.81-12.43 3.09 3.09L5.17 22.44z"/></svg>
+          <span class="store-label">
+            <small data-pl="Wkrótce na" data-en="Coming soon on">Wkrótce na</small>
+            Google Play
+          </span>
+        </a>
+      </div>
+      <p class="footer-note">
+        © 2025 AutoPilot ·
+        <button onclick="showView('privacy')" style="background:none;border:none;cursor:pointer;font-family:inherit;font-size:inherit;color:inherit;text-decoration:underline;" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</button>
+        · <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+      </p>
+    </section>
+
+  </div><!-- /view-home -->
+
+  <!-- ═══════════════ PRIVACY ═══════════════ -->
+  <div id="view-privacy" class="view">
+    <div class="pp-wrap">
+
+      <div class="pp-header">
+        <div class="pp-label" data-pl="Dokument prawny" data-en="Legal Document">Dokument prawny</div>
+        <h1 class="pp-title" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</h1>
+        <p class="pp-subtitle" data-pl="Wyjaśniamy, jakie dane są przetwarzane i gdzie są przechowywane." data-en="We explain what data is processed and where it is stored.">
+          Wyjaśniamy, jakie dane są przetwarzane i gdzie są przechowywane.
+        </p>
+        <span class="pp-date">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span data-pl="Data aktualizacji: 02.06.2026" data-en="Last updated: 02.06.2026">Data aktualizacji: 02.06.2026</span>
+        </span>
+      </div>
+
+
+      <!-- PL -->
+      <div id="pp-pl" class="pp-lang-section visible">
+        <div class="pp-section">
+          <h2><span class="sec-num">1</span>Administrator</h2>
+          <p>Administratorem danych przetwarzanych przez aplikację AutoPilot jest:</p>
+          <div class="pp-highlight"><strong>Piotr Sitarek</strong><br/>Kontakt: <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a></div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">2</span>Jakie dane są zbierane</h2>
+          <p>Aplikacja AutoPilot może przechowywać dane dotyczące pojazdów wprowadzone przez użytkownika, w szczególności:</p>
+          <ul>
+            <li>numer rejestracyjny pojazdu,</li>
+            <li>numer VIN,</li>
+            <li>marka, model, rok produkcji i nazwa pojazdu,</li>
+            <li>daty przeglądów technicznych, ubezpieczenia OC oraz innych terminów serwisowych,</li>
+            <li>notatki i ustawienia przypomnień.</li>
+          </ul>
+          <div class="pp-highlight">Dane te są przechowywane lokalnie na urządzeniu użytkownika w lokalnej bazie danych aplikacji oraz ustawieniach aplikacji. Aplikacja nie wymaga konta użytkownika ani logowania.</div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">3</span>Cel przetwarzania danych</h2>
+          <p>Dane są przetwarzane w celu:</p>
+          <ul>
+            <li>zapisania pojazdów w aplikacji,</li>
+            <li>wyświetlania terminów dotyczących pojazdu,</li>
+            <li>tworzenia i obsługi lokalnych przypomnień o przeglądach, ubezpieczeniu OC i innych terminach,</li>
+            <li>zapamiętywania ustawień aplikacji.</li>
+          </ul>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">4</span>Czy dane są wysyłane na zewnątrz</h2>
+          <p>Co do zasady dane pojazdów są przechowywane lokalnie na urządzeniu.</p>
+          <p>Podczas dodawania pojazdu użytkownik może skorzystać z funkcji pobrania danych z serwisu <strong>historiapojazdu.gov.pl</strong>. W takim przypadku aplikacja wysyła do serwisu zewnętrznego dane wymagane do zapytania, takie jak numer rejestracyjny, VIN oraz data pierwszej rejestracji. Zapytanie jest wykonywane tylko w ramach tej funkcji i służy pobraniu danych pojazdu.</p>
+          <div class="pp-highlight">AutoPilot nie sprzedaje danych użytkownika i nie udostępnia ich podmiotom trzecim w celach marketingowych.</div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">5</span>Jak użytkownik może usunąć dane</h2>
+          <p>Użytkownik może usunąć dane pojazdu bezpośrednio w aplikacji poprzez usunięcie pojazdu. Usunięcie pojazdu usuwa również przypomnienia powiązane z tym pojazdem.</p>
+          <p>Użytkownik może również usunąć dane aplikacji z poziomu ustawień systemu operacyjnego urządzenia lub odinstalować aplikację.</p>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">6</span>Kontakt</h2>
+          <p>W sprawach dotyczących prywatności i danych przetwarzanych przez aplikację prosimy o kontakt:</p>
+          <div class="pp-contact">
+            <div class="pp-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <span class="pp-contact-info">Adres e-mail</span>
+              <a class="pp-contact-email" href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EN -->
+      <div id="pp-en" class="pp-lang-section">
+        <div class="pp-section">
+          <h2><span class="sec-num">1</span>Controller</h2>
+          <p>The controller of data processed by the AutoPilot app is:</p>
+          <div class="pp-highlight"><strong>Piotr Sitarek</strong><br/>Contact: <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a></div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">2</span>What data is collected</h2>
+          <p>The AutoPilot app may store vehicle data entered by the user, including:</p>
+          <ul>
+            <li>vehicle registration number,</li>
+            <li>VIN,</li>
+            <li>vehicle make, model, production year, and custom vehicle name,</li>
+            <li>technical inspection, motor insurance, and other service deadline dates,</li>
+            <li>notes and reminder settings.</li>
+          </ul>
+          <div class="pp-highlight">This data is stored locally on the user's device in the app's local database and app settings. The app does not require a user account or login.</div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">3</span>Purpose of processing</h2>
+          <p>The data is processed to:</p>
+          <ul>
+            <li>save vehicles in the app,</li>
+            <li>display vehicle-related deadlines,</li>
+            <li>create and manage local reminders for technical inspections, motor insurance, and other deadlines,</li>
+            <li>remember app settings.</li>
+          </ul>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">4</span>Whether data is sent outside the device</h2>
+          <p>In general, vehicle data is stored locally on the device.</p>
+          <p>When adding a vehicle, the user may use the feature that retrieves vehicle data from <strong>historiapojazdu.gov.pl</strong>. In that case, the app sends the data required for the query to the external service, such as the registration number, VIN, and first registration date. The request is made only as part of this feature and is used to retrieve vehicle data.</p>
+          <div class="pp-highlight">AutoPilot does not sell user data and does not share it with third parties for marketing purposes.</div>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">5</span>How users can delete data</h2>
+          <p>Users can delete vehicle data directly in the app by deleting a vehicle. Deleting a vehicle also deletes reminders associated with that vehicle.</p>
+          <p>Users can also remove app data from the operating system settings of their device or uninstall the app.</p>
+        </div>
+        <div class="pp-section">
+          <h2><span class="sec-num">6</span>Contact details</h2>
+          <p>For privacy-related matters and questions about data processed by the app, please contact:</p>
+          <div class="pp-contact">
+            <div class="pp-contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <span class="pp-contact-info">Email address</span>
+              <a class="pp-contact-email" href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+    <div class="pp-footer">© 2025 AutoPilot · mobile.apps.developer.pl@gmail.com</div>
+  </div><!-- /view-privacy -->
 
-  </div>
+  <script>
+    let lang = 'pl';
 
-</main>
+    const mockupStrings = {
+      pl: { greeting:'Dzień dobry 👋', title:'Nadchodzące terminy', c1t:'Przegląd techniczny', c1d:'Po terminie', c2t:'Ubezpieczenie OC', c2d:'Za 12 dni', c3t:'Wymiana oleju', c3d:'Za 45 dni' },
+      en: { greeting:'Good morning 👋',  title:'Upcoming deadlines',   c1t:'MOT Inspection',    c1d:'Overdue',     c2t:'Car Insurance',   c2d:'In 12 days', c3t:'Oil Change',     c3d:'In 45 days' }
+    };
 
-<footer>
-  <p>© 2026 AutoPilot · <a href="mailto:mobile.apps.developer.pl@gmail.com">mobile.apps.developer.pl@gmail.com</a></p>
-</footer>
+    function showView(name) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + name).classList.add('active');
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      document.getElementById('nav-' + name).classList.add('active');
+      window.scrollTo(0, 0);
+      // history.replaceState disabled in sandbox
+    }
 
-<script>
-  function setLang(lang, btn) {
-    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('visible'));
-    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById('lang-' + lang).classList.add('visible');
-    btn.classList.add('active');
-  }
-</script>
+    function toggleLang() {
+      lang = lang === 'pl' ? 'en' : 'pl';
+      applyLang();
+    }
+
+    function applyLang() {
+      const isPl = lang === 'pl';
+      document.querySelectorAll('[data-pl]').forEach(el => { el.innerHTML = isPl ? el.dataset.pl : el.dataset.en; });
+      document.getElementById('langFlag').textContent  = isPl ? '🇬🇧' : '🇵🇱';
+      document.getElementById('langLabel').textContent = isPl ? 'English' : 'Polski';
+      document.documentElement.lang = lang;
+      document.title = isPl ? 'AutoPilot – Terminy Twojego auta pod kontrolą' : 'AutoPilot – Your car\'s deadlines, under control';
+      // sync pp lang buttons to global lang
+      setPpLang(lang);
+      // mockup
+      const s = mockupStrings[lang];
+      document.getElementById('m-greeting').textContent = s.greeting;
+      document.getElementById('m-title').textContent    = s.title;
+      document.getElementById('m-c1t').textContent = s.c1t; document.getElementById('m-c1d').textContent = s.c1d;
+      document.getElementById('m-c2t').textContent = s.c2t; document.getElementById('m-c2d').textContent = s.c2d;
+      document.getElementById('m-c3t').textContent = s.c3t; document.getElementById('m-c3d').textContent = s.c3d;
+    }
+
+    function setPpLang(l) {
+      document.querySelectorAll('.pp-lang-section').forEach(el => el.classList.remove('visible'));
+      document.getElementById('pp-' + l).classList.add('visible');
+      
+      
+    }
+
+    // handle deep link to #privacy on load
+    if (window.location.hash === '#privacy') showView('privacy');
+  </script>
 
 </body>
 </html>
