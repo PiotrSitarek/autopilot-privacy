@@ -37,8 +37,7 @@
       overflow-x: hidden;
     }
 
-    /* ─────────────────── NAV ─────────────────── */
-    .nav { flex-wrap: wrap; height: auto; min-height: 56px;
+    .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
@@ -103,11 +102,9 @@
     }
     .nav-lang:hover { background: var(--surface-var); color: var(--text); }
 
-    /* ─────────────────── VIEWS ─────────────────── */
     .view { display: none; padding-top: 56px; }
     .view.active { display: block; }
 
-    /* ─────────────────── HOME / HERO ─────────────────── */
     .hero {
       min-height: 100svh;
       display: flex;
@@ -196,7 +193,6 @@
     .store-label { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
     .store-label small { font-size: 10px; font-weight: 400; opacity: .65; text-transform: uppercase; letter-spacing: .06em; }
 
-    /* phone mockup */
     .mockup-wrap { margin-top: 60px; animation: fadeUp .7s .4s ease both; }
 
     .phone {
@@ -233,7 +229,6 @@
     .phone-card-sub   { font-size: 9px; color: var(--text-muted); }
     .phone-card-date  { font-size: 9px; color: var(--text-muted); text-align: right; white-space: nowrap; }
 
-    /* sections */
     .section { padding: 96px 24px; max-width: 880px; margin: 0 auto; }
 
     .section-label {
@@ -307,23 +302,11 @@
 
     .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 24px; }
 
-    /* ─────────────────── PRIVACY PAGE ─────────────────── */
     .pp-wrap { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
-
     .pp-header { margin-bottom: 40px; }
-
-    .pp-label {
-      font-size: 11px; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
-    }
-
-    .pp-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px;
-    }
-
+    .pp-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+    .pp-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 12px; }
     .pp-subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 16px; }
-
     .pp-date {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; color: var(--text-muted);
@@ -332,92 +315,33 @@
       padding: 4px 12px; border-radius: 6px;
     }
 
-
-      padding: 6px 18px; font-size: 13px; font-weight: 600;
-      border: 1px solid var(--border); border-radius: 8px;
-      background: transparent; color: var(--text-muted);
-      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: all .15s;
-    }
-
     .pp-section { padding: 28px 0; border-top: 1px solid var(--border); }
     .pp-section:first-of-type { border-top: none; }
-
-    .pp-section h2 {
-      font-size: 17px; font-weight: 700; color: var(--text);
-      margin-bottom: 14px;
-      display: flex; align-items: center; gap: 10px;
-    }
-
-    .sec-num {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 24px; height: 24px; border-radius: 50%;
-      background: var(--primary); color: var(--text);
-      font-size: 11px; font-weight: 700; flex-shrink: 0;
-    }
-
+    .pp-section h2 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .sec-num { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--primary); color: var(--text); font-size: 11px; font-weight: 700; flex-shrink: 0; }
     .pp-section p { color: var(--text-sec); margin-bottom: 12px; font-size: 15px; line-height: 1.7; }
     .pp-section p:last-child { margin-bottom: 0; }
-
     .pp-section ul { padding-left: 20px; margin: 10px 0; }
     .pp-section li { margin-bottom: 6px; color: var(--text-sec); font-size: 15px; }
-
-    .pp-highlight {
-      background: var(--card);
-      border-left: 3px solid var(--primary);
-      padding: 14px 18px;
-      border-radius: 0 8px 8px 0;
-      margin: 16px 0;
-      font-size: 14px;
-      color: var(--text-sec);
-      line-height: 1.65;
-    }
+    .pp-highlight { background: var(--card); border-left: 3px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: var(--text-sec); line-height: 1.65; }
     .pp-highlight a { color: var(--text-sec); }
-
-    .pp-contact {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      display: flex; align-items: center; gap: 16px; margin-top: 8px;
-    }
-
-    .pp-contact-icon {
-      width: 40px; height: 40px;
-      background: rgba(20,72,159,.2);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    .pp-contact { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .pp-contact-icon { width: 40px; height: 40px; background: rgba(20,72,159,.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .pp-contact-icon svg { width: 20px; height: 20px; color: var(--text-sec); }
-
     .pp-contact-info { font-size: 13px; color: var(--text-muted); }
-    .pp-contact-email {
-      display: block; font-size: 15px; font-weight: 600;
-      color: var(--text); text-decoration: none; word-break: break-all;
-    }
+    .pp-contact-email { display: block; font-size: 15px; font-weight: 600; color: var(--text); text-decoration: none; word-break: break-all; }
     .pp-contact-email:hover { text-decoration: underline; }
-
     .pp-lang-section { display: none; }
     .pp-lang-section.visible { display: block; }
+    .pp-footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--text-muted); opacity: .5; }
 
-    .pp-footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
-      opacity: .5;
-    }
-
-    /* ─────────────────── ANIMATIONS ─────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─────────────────── RESPONSIVE ─────────────────── */
     @media (max-width: 600px) {
-      .nav { flex-wrap: wrap; height: auto; min-height: 56px; padding: 0 16px; }
+      .nav { padding: 0 16px; }
       .privacy-block { padding: 36px 20px; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .pp-wrap { padding: 40px 16px 60px; }
@@ -430,20 +354,17 @@
 </head>
 <body>
 
-  <!-- ═══════════════ NAV ═══════════════ -->
   <nav class="nav">
     <button class="nav-logo" onclick="showView('home')">Auto<span>Pilot</span></button>
     <div class="nav-links">
-      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Strona główna" data-en="Home">Strona główna</button>
-      <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</button>
+      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Aplikacja" data-en="Home">Aplikacja</button>
+      <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Prywatność" data-en="Privacy Policy">Prywatność</button>
     </div>
     <button class="nav-lang" onclick="toggleLang()">
-      <span id="langFlag">🇬🇧</span>
-      <span id="langLabel">English</span>
+      <span id="langLabel">EN</span>
     </button>
   </nav>
 
-  <!-- ═══════════════ HOME ═══════════════ -->
   <div id="view-home" class="view active">
 
     <section class="hero">
@@ -611,9 +532,8 @@
       </p>
     </section>
 
-  </div><!-- /view-home -->
+  </div>
 
-  <!-- ═══════════════ PRIVACY ═══════════════ -->
   <div id="view-privacy" class="view">
     <div class="pp-wrap">
 
@@ -629,8 +549,6 @@
         </span>
       </div>
 
-
-      <!-- PL -->
       <div id="pp-pl" class="pp-lang-section visible">
         <div class="pp-section">
           <h2><span class="sec-num">1</span>Administrator</h2>
@@ -685,7 +603,6 @@
         </div>
       </div>
 
-      <!-- EN -->
       <div id="pp-en" class="pp-lang-section">
         <div class="pp-section">
           <h2><span class="sec-num">1</span>Controller</h2>
@@ -742,7 +659,7 @@
 
     </div>
     <div class="pp-footer">© 2025 AutoPilot · mobile.apps.developer.pl@gmail.com</div>
-  </div><!-- /view-privacy -->
+  </div>
 
   <script>
     let lang = 'pl';
@@ -758,7 +675,6 @@
       document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
       document.getElementById('nav-' + name).classList.add('active');
       window.scrollTo(0, 0);
-      // history.replaceState disabled in sandbox
     }
 
     function toggleLang() {
@@ -769,13 +685,10 @@
     function applyLang() {
       const isPl = lang === 'pl';
       document.querySelectorAll('[data-pl]').forEach(el => { el.innerHTML = isPl ? el.dataset.pl : el.dataset.en; });
-      document.getElementById('langFlag').textContent  = isPl ? '🇬🇧' : '🇵🇱';
-      document.getElementById('langLabel').textContent = isPl ? 'English' : 'Polski';
+      document.getElementById('langLabel').textContent = isPl ? 'EN' : 'PL';
       document.documentElement.lang = lang;
       document.title = isPl ? 'AutoPilot – Terminy Twojego auta pod kontrolą' : 'AutoPilot – Your car\'s deadlines, under control';
-      // sync pp lang buttons to global lang
       setPpLang(lang);
-      // mockup
       const s = mockupStrings[lang];
       document.getElementById('m-greeting').textContent = s.greeting;
       document.getElementById('m-title').textContent    = s.title;
@@ -787,11 +700,8 @@
     function setPpLang(l) {
       document.querySelectorAll('.pp-lang-section').forEach(el => el.classList.remove('visible'));
       document.getElementById('pp-' + l).classList.add('visible');
-      
-      
     }
 
-    // handle deep link to #privacy on load
     if (window.location.hash === '#privacy') showView('privacy');
   </script>
 
