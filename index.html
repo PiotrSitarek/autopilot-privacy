@@ -38,7 +38,7 @@
     }
 
     /* ─────────────────── NAV ─────────────────── */
-    .nav {
+    .nav { flex-wrap: wrap; height: auto; min-height: 56px;
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
@@ -264,7 +264,7 @@
     }
     .feat-card:hover { border-color: rgba(20,72,159,.6); background: var(--surface-var); transform: translateY(-3px); }
 
-    .feat-icon { font-size: 26px; margin-bottom: 14px; display: block; }
+    .feat-icon { font-size: 26px; margin-bottom: 14px; display: block; text-align: center; }
     .feat-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
     .feat-desc  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
@@ -417,7 +417,7 @@
 
     /* ─────────────────── RESPONSIVE ─────────────────── */
     @media (max-width: 600px) {
-      .nav { padding: 0 16px; }
+      .nav { flex-wrap: wrap; height: auto; min-height: 56px; padding: 0 16px; }
       .privacy-block { padding: 36px 20px; }
       .features-grid { grid-template-columns: 1fr 1fr; }
       .pp-wrap { padding: 40px 16px 60px; }
@@ -434,11 +434,12 @@
   <nav class="nav">
     <button class="nav-logo" onclick="showView('home')">Auto<span>Pilot</span></button>
     <div class="nav-links">
-      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Aplikacja" data-en="Home">Aplikacja</button>
-      <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Prywatność" data-en="Privacy Policy">Prywatność</button>
+      <button class="nav-link active" id="nav-home" onclick="showView('home')" data-pl="Strona główna" data-en="Home">Strona główna</button>
+      <button class="nav-link" id="nav-privacy" onclick="showView('privacy')" data-pl="Polityka prywatności" data-en="Privacy Policy">Polityka prywatności</button>
     </div>
     <button class="nav-lang" onclick="toggleLang()">
-      <span id="langLabel">EN</span>
+      <span id="langFlag">🇬🇧</span>
+      <span id="langLabel">English</span>
     </button>
   </nav>
 
@@ -768,7 +769,8 @@
     function applyLang() {
       const isPl = lang === 'pl';
       document.querySelectorAll('[data-pl]').forEach(el => { el.innerHTML = isPl ? el.dataset.pl : el.dataset.en; });
-      document.getElementById('langLabel').textContent = isPl ? 'EN' : 'PL';
+      document.getElementById('langFlag').textContent  = isPl ? '🇬🇧' : '🇵🇱';
+      document.getElementById('langLabel').textContent = isPl ? 'English' : 'Polski';
       document.documentElement.lang = lang;
       document.title = isPl ? 'AutoPilot – Terminy Twojego auta pod kontrolą' : 'AutoPilot – Your car\'s deadlines, under control';
       // sync pp lang buttons to global lang
