@@ -195,39 +195,16 @@
 
     .mockup-wrap { margin-top: 60px; animation: fadeUp .7s .4s ease both; }
 
-    .phone {
-      width: 224px; height: 448px;
+    .hero-phone {
+      width: 240px;
       background: var(--surface);
-      border-radius: 38px;
       border: 1.5px solid rgba(255,255,255,.1);
+      border-radius: 36px; padding: 7px;
       margin: 0 auto;
-      overflow: hidden;
       box-shadow: 0 48px 96px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04) inset;
+      overflow: hidden;
     }
-
-    .phone-notch { width: 68px; height: 22px; background: var(--bg); border-radius: 0 0 14px 14px; margin: 0 auto; }
-    .phone-screen { padding: 12px 14px; }
-    .phone-greeting { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
-    .phone-title-small { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
-
-    .phone-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 12px;
-      padding: 10px 12px;
-      margin-bottom: 8px;
-      display: flex; align-items: center; gap: 10px;
-    }
-
-    .phone-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot-red    { background: #FF5F5F; }
-    .dot-yellow { background: #F5C518; }
-    .dot-green  { background: #30D158; }
-
-    .phone-card-text { flex: 1; }
-    .phone-card-title { font-size: 10px; font-weight: 600; }
-    .phone-card-sub   { font-size: 9px; color: var(--text-muted); }
-    .phone-card-date  { font-size: 9px; color: var(--text-muted); text-align: right; white-space: nowrap; }
+    .hero-phone img { display: block; width: 100%; border-radius: 30px; }
 
     .section { padding: 96px 24px; max-width: 880px; margin: 0 auto; }
 
@@ -262,6 +239,23 @@
     .feat-icon { font-size: 26px; margin-bottom: 14px; display: block; text-align: center; }
     .feat-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
     .feat-desc  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* --- App screenshots (added) --- */
+    .shots-section { max-width: 1040px; margin: 0 auto; padding: 96px 24px; }
+    .shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    .shot-item { display: flex; flex-direction: column; align-items: center; }
+    .shot-frame {
+      width: 100%; max-width: 230px;
+      background: var(--surface);
+      border: 1.5px solid rgba(255,255,255,.1);
+      border-radius: 28px; padding: 6px;
+      box-shadow: 0 28px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
+      overflow: hidden;
+    }
+    .shot-frame img { display: block; width: 100%; border-radius: 22px; }
+    .shot-caption { margin-top: 18px; max-width: 230px; font-size: 13px; line-height: 1.5; color: var(--text-muted); text-align: center; }
+    @media (max-width: 900px) { .shots-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 24px; } }
+    @media (max-width: 460px) { .shots-grid { grid-template-columns: 1fr; } }
 
     .privacy-block {
       background: var(--surface);
@@ -400,36 +394,8 @@
       </div>
 
       <div class="mockup-wrap">
-        <div class="phone">
-          <div class="phone-notch"></div>
-          <div class="phone-screen">
-            <p class="phone-greeting" id="m-greeting">Dzień dobry 👋</p>
-            <p class="phone-title-small" id="m-title">Nadchodzące terminy</p>
-            <div class="phone-card">
-              <div class="phone-dot dot-red"></div>
-              <div class="phone-card-text">
-                <div class="phone-card-title" id="m-c1t">Przegląd techniczny</div>
-                <div class="phone-card-sub">Toyota Corolla</div>
-              </div>
-              <div class="phone-card-date" id="m-c1d">Po terminie</div>
-            </div>
-            <div class="phone-card">
-              <div class="phone-dot dot-yellow"></div>
-              <div class="phone-card-text">
-                <div class="phone-card-title" id="m-c2t">Ubezpieczenie OC</div>
-                <div class="phone-card-sub">Toyota Corolla</div>
-              </div>
-              <div class="phone-card-date" id="m-c2d">Za 12 dni</div>
-            </div>
-            <div class="phone-card">
-              <div class="phone-dot dot-green"></div>
-              <div class="phone-card-text">
-                <div class="phone-card-title" id="m-c3t">Wymiana oleju</div>
-                <div class="phone-card-sub">Toyota Corolla</div>
-              </div>
-              <div class="phone-card-date" id="m-c3d">Za 45 dni</div>
-            </div>
-          </div>
+        <div class="hero-phone">
+          <img src="Screen2.png" alt="Pulpit AutoPilot z terminami auta" />
         </div>
       </div>
     </section>
@@ -469,6 +435,29 @@
           <div class="feat-title" data-pl="Zmiana opon" data-en="Tire Change">Zmiana opon</div>
           <p class="feat-desc" data-pl="Sezonowa zmiana opon nigdy więcej Cię nie zaskoczy." data-en="Seasonal tire swaps will never catch you off guard again.">Sezonowa zmiana opon nigdy więcej Cię nie zaskoczy.</p>
         </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="shots-section">
+      <p class="section-label" data-pl="Aplikacja w akcji" data-en="The app in action">Aplikacja w akcji</p>
+      <h2 class="section-title" data-pl="Cztery ekrany, zero chaosu." data-en="Four screens, zero chaos.">Cztery ekrany, zero chaosu.</h2>
+      <p class="section-body" data-pl="Od pierwszego uruchomienia po listę terminów — wszystko działa lokalnie, bez konta i bez logowania." data-en="From first launch to your deadline list — everything works locally, no account, no login.">Od pierwszego uruchomienia po listę terminów — wszystko działa lokalnie, bez konta i bez logowania.</p>
+
+      <div class="shots-grid">
+        <figure class="shot-item">
+          <div class="shot-frame"><img src="Screen1.png" loading="lazy" alt="Ekran powitalny AutoPilot"></div>
+          <figcaption class="shot-caption" data-pl="Start w kilka sekund — dane zostają na telefonie." data-en="Up and running in seconds — data stays on your phone.">Start w kilka sekund — dane zostają na telefonie.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot-frame"><img src="Screen3.png" loading="lazy" alt="Wybór metody dodania auta"></div>
+          <figcaption class="shot-caption" data-pl="Dodaj auto zdjęciem dowodu, automatycznie albo ręcznie." data-en="Add a car by scanning your papers, automatically, or by hand.">Dodaj auto zdjęciem dowodu, automatycznie albo ręcznie.</figcaption>
+        </figure>
+        <figure class="shot-item">
+          <div class="shot-frame"><img src="Screen4.png" loading="lazy" alt="Lista nadchodzących terminów"></div>
+          <figcaption class="shot-caption" data-pl="Terminy pogrupowane: w tym tygodniu, w miesiącu, później." data-en="Deadlines grouped: this week, this month, later.">Terminy pogrupowane: w tym tygodniu, w miesiącu, później.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -664,11 +653,6 @@
   <script>
     let lang = 'pl';
 
-    const mockupStrings = {
-      pl: { greeting:'Dzień dobry 👋', title:'Nadchodzące terminy', c1t:'Przegląd techniczny', c1d:'Po terminie', c2t:'Ubezpieczenie OC', c2d:'Za 12 dni', c3t:'Wymiana oleju', c3d:'Za 45 dni' },
-      en: { greeting:'Good morning 👋',  title:'Upcoming deadlines',   c1t:'MOT Inspection',    c1d:'Overdue',     c2t:'Car Insurance',   c2d:'In 12 days', c3t:'Oil Change',     c3d:'In 45 days' }
-    };
-
     function showView(name) {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + name).classList.add('active');
@@ -689,12 +673,6 @@
       document.documentElement.lang = lang;
       document.title = isPl ? 'AutoPilot – Terminy Twojego auta pod kontrolą' : 'AutoPilot – Your car\'s deadlines, under control';
       setPpLang(lang);
-      const s = mockupStrings[lang];
-      document.getElementById('m-greeting').textContent = s.greeting;
-      document.getElementById('m-title').textContent    = s.title;
-      document.getElementById('m-c1t').textContent = s.c1t; document.getElementById('m-c1d').textContent = s.c1d;
-      document.getElementById('m-c2t').textContent = s.c2t; document.getElementById('m-c2d').textContent = s.c2d;
-      document.getElementById('m-c3t').textContent = s.c3t; document.getElementById('m-c3d').textContent = s.c3d;
     }
 
     function setPpLang(l) {
