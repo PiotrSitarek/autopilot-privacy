@@ -257,6 +257,30 @@
     @media (max-width: 900px) { .shots-grid { grid-template-columns: repeat(2, 1fr); gap: 36px 24px; } }
     @media (max-width: 460px) { .shots-grid { grid-template-columns: 1fr; } }
 
+    /* --- Pricing (added) --- */
+    .price-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 56px 40px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .price-block::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,72,159,.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .price-block > * { position: relative; }
+    .price-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 18px; }
+    .price-amount { font-size: clamp(2.6rem, 7vw, 3.8rem); font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+    .price-amount span { font-size: .4em; font-weight: 600; color: var(--text-muted); letter-spacing: 0; }
+    .price-tagline { color: var(--text-sec); font-size: 1.05rem; margin: 16px auto 28px; max-width: 420px; line-height: 1.6; }
+    .price-list { display: inline-flex; flex-direction: column; gap: 12px; text-align: left; margin: 0 auto; }
+    .price-li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-sec); font-size: 15px; }
+    .price-li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; color: #30D158; }
+    .price-foot { margin-top: 28px; font-size: 13px; color: var(--text-muted); }
+
     .privacy-block {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -371,9 +395,9 @@
       </h1>
 
       <p class="hero-sub"
-         data-pl="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem."
+         data-pl="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami."
          data-en="MOT, insurance, oil, tires — all your car's deadlines in one place, with advance reminders.">
-        Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem.
+        Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami.
       </p>
 
       <div class="cta-row">
@@ -458,6 +482,30 @@
           <div class="shot-frame"><img src="Screen4.png" loading="lazy" alt="Lista nadchodzących terminów"></div>
           <figcaption class="shot-caption" data-pl="Terminy pogrupowane: w tym tygodniu, w miesiącu, później." data-en="Deadlines grouped: this week, this month, later.">Terminy pogrupowane: w tym tygodniu, w miesiącu, później.</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="price-block">
+        <div class="price-amount" data-pl="Pierwsze auto <span>za darmo</span>" data-en="First car <span>free</span>">Pierwsze auto <span>za darmo</span></div>
+        <p class="price-tagline" data-pl="Masz więcej aut? Odblokuj nielimitowaną liczbę pojazdów jedną opłatą." data-en="Got more cars? Unlock unlimited vehicles with a single payment.">Masz więcej aut? Odblokuj nielimitowaną liczbę pojazdów jedną opłatą.</p>
+        <div class="price-list">
+          <div class="price-li">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-pl="<strong>9,99 PLN</strong> — jednorazowo, bez subskrypcji" data-en="<strong>9.99 PLN</strong> — one-time, no subscription"><strong>9,99 PLN</strong> — jednorazowo, bez subskrypcji</span>
+          </div>
+          <div class="price-li">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-pl="Nielimitowana liczba aut — na zawsze" data-en="Unlimited number of cars — forever">Nielimitowana liczba aut — na zawsze</span>
+          </div>
+          <div class="price-li">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-pl="Wszystkie dane nadal lokalnie na telefonie" data-en="All data still stays locally on your phone">Wszystkie dane nadal lokalnie na telefonie</span>
+          </div>
+        </div>
+        <p class="price-foot" data-pl="Płatność jednorazowa przez App Store. Bez kont, bez opłat cyklicznych." data-en="One-time payment via the App Store. No accounts, no recurring fees.">Płatność jednorazowa przez App Store. Bez kont, bez opłat cyklicznych.</p>
       </div>
     </section>
 
