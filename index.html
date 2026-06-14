@@ -5,6 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AutoPilot – Terminy Twojego auta pod kontrolą</title>
   <meta name="description" content="AutoPilot przypomni Ci o przeglądzie technicznym, OC, wymianie oleju i opon. Zero konta. Zero chmury. Dane zostają na Twoim telefonie." />
+
+  <link rel="canonical" href="https://piotrsitarek.github.io/autopilot-privacy/" />
+  <meta name="theme-color" content="#051542" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AutoPilot" />
+  <meta property="og:title" content="AutoPilot – Terminy Twojego auta pod kontrolą" />
+  <meta property="og:description" content="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem. Zero konta. Zero chmury." />
+  <meta property="og:url" content="https://piotrsitarek.github.io/autopilot-privacy/" />
+  <meta property="og:image" content="https://piotrsitarek.github.io/autopilot-privacy/ogimage.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AutoPilot – Terminy Twojego auta pod kontrolą" />
+  <meta name="twitter:description" content="Przegląd techniczny, OC, olej, opony — wszystkie terminy auta w jednym miejscu. Zero konta. Zero chmury." />
+  <meta name="twitter:image" content="https://piotrsitarek.github.io/autopilot-privacy/ogimage.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AutoPilot",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "UtilitiesApplication",
+    "description": "AutoPilot pilnuje terminów auta: przeglądu technicznego, OC, wymiany oleju i opon. Działa lokalnie na telefonie, bez konta i bez chmury.",
+    "url": "https://piotrsitarek.github.io/autopilot-privacy/",
+    "image": "https://piotrsitarek.github.io/autopilot-privacy/ogimage.png",
+    "inLanguage": "pl",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "description": "Pierwsze auto za darmo. Nielimitowana liczba aut po jednorazowej opłacie 9,99 PLN."
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Piotr Sitarek"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Czy AutoPilot jest darmowy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak. Pierwsze auto dodajesz i pilnujesz całkowicie za darmo. Jeśli masz więcej pojazdów, odblokowujesz nielimitowaną liczbę aut jedną opłatą 9,99 PLN — bez subskrypcji, na zawsze."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy AutoPilot wymaga konta lub logowania?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nie. AutoPilot działa bez konta i bez logowania. Wszystkie dane są przechowywane lokalnie na Twoim telefonie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ile aut mogę dodać do AutoPilota?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jedno auto jest darmowe. Po jednorazowej opłacie 9,99 PLN możesz dodać nielimitowaną liczbę pojazdów."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy moje dane są wysyłane do chmury?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nie. Dane pojazdów zostają lokalnie na urządzeniu. Wyjątkiem jest opcjonalne pobranie danych z serwisu historiapojazdu.gov.pl, które uruchamiasz sam przy dodawaniu auta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O jakich terminach przypomina AutoPilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AutoPilot przypomina o przeglądzie technicznym, ubezpieczeniu OC, wymianie oleju i zmianie opon — z wyprzedzeniem, żebyś zdążył się umówić."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet" />
@@ -26,7 +122,9 @@
       --radius:      16px;
     }
 
-    html { scroll-behavior: smooth; }
+    :root { color-scheme: dark; }
+
+    html { scroll-behavior: smooth; background: #051542; }
 
     body {
       background: var(--bg);
@@ -281,6 +379,29 @@
     .price-li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; color: #30D158; }
     .price-foot { margin-top: 28px; font-size: 13px; color: var(--text-muted); }
 
+    /* --- FAQ (added) --- */
+    .faq-section { max-width: 780px; margin: 0 auto; padding: 96px 24px; }
+    .faq-list { margin-top: 44px; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .faq-item[open] { border-color: rgba(20,72,159,.6); }
+    .faq-item summary {
+      cursor: pointer; list-style: none;
+      padding: 20px 24px;
+      font-size: 15px; font-weight: 600; color: var(--text);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 22px; font-weight: 400; color: var(--text-muted); flex-shrink: 0; transition: transform .2s; }
+    .faq-item[open] summary::after { content: '\2212'; }
+    .faq-answer { padding: 0 24px 20px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
     .privacy-block {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -395,9 +516,9 @@
       </h1>
 
       <p class="hero-sub"
-         data-pl="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami."
+         data-pl="Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem."
          data-en="MOT, insurance, oil, tires — all your car's deadlines in one place, with advance reminders.">
-        Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami.
+        Przegląd techniczny, OC, olej, opony — wszystkie terminy w jednym miejscu, z przypomnieniami z wyprzedzeniem.
       </p>
 
       <div class="cta-row">
@@ -427,11 +548,11 @@
     <div class="divider"></div>
 
     <section class="section">
-      <p class="section-label" data-pl="Problem" data-en="The Problem">Problem</p>
+      <p class="section-label" data-pl="Dlaczego AutoPilot" data-en="Why AutoPilot">Dlaczego AutoPilot</p>
       <h2 class="section-title"
-          data-pl="Mandat za brak OC to nie pech. To zapomnienie."
-          data-en="A fine for lapsed insurance isn't bad luck. It's forgetting.">
-        Mandat za brak OC to nie pech. To zapomnienie.
+          data-pl="AutoPilot pamięta, żebyś Ty nie musiał."
+          data-en="AutoPilot remembers, so you don't have to.">
+        AutoPilot pamięta, żebyś Ty nie musiał.
       </h2>
       <p class="section-body"
          data-pl="Terminy przeglądów i ubezpieczeń gubią się w codziennym chaosie. AutoPilot pilnuje ich za Ciebie — bez kont, bez subskrypcji, bez dostępu do Internetu."
@@ -489,6 +610,7 @@
 
     <section class="section">
       <div class="price-block">
+        <p class="price-eyebrow" data-pl="Cennik" data-en="Pricing">Cennik</p>
         <div class="price-amount" data-pl="Pierwsze auto <span>za darmo</span>" data-en="First car <span>free</span>">Pierwsze auto <span>za darmo</span></div>
         <p class="price-tagline" data-pl="Masz więcej aut? Odblokuj nielimitowaną liczbę pojazdów jedną opłatą." data-en="Got more cars? Unlock unlimited vehicles with a single payment.">Masz więcej aut? Odblokuj nielimitowaną liczbę pojazdów jedną opłatą.</p>
         <div class="price-list">
@@ -505,7 +627,7 @@
             <span data-pl="Wszystkie dane nadal lokalnie na telefonie" data-en="All data still stays locally on your phone">Wszystkie dane nadal lokalnie na telefonie</span>
           </div>
         </div>
-        <p class="price-foot" data-pl=Płatność jednorazowa w sklepie z aplikacjami. Bez kont, bez opłat cyklicznych." data-en="One-time payment via the app store. No accounts, no recurring fees.">Płatność jednorazowa w sklepie z aplikacjami. Bez kont, bez opłat cyklicznych.</p>
+        <p class="price-foot" data-pl="Płatność jednorazowa przez App Store. Bez kont, bez opłat cyklicznych." data-en="One-time payment via the App Store. No accounts, no recurring fees.">Płatność jednorazowa przez App Store. Bez kont, bez opłat cyklicznych.</p>
       </div>
     </section>
 
@@ -530,6 +652,36 @@
           <span class="pill" data-pl="Dane lokalne" data-en="Local data only">Dane lokalne</span>
           <span class="pill" data-pl="Bez reklam" data-en="No ads">Bez reklam</span>
         </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="faq-section">
+      <p class="section-label" data-pl="FAQ" data-en="FAQ">FAQ</p>
+      <h2 class="section-title" data-pl="Najczęstsze pytania" data-en="Frequently asked questions">Najczęstsze pytania</h2>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary data-pl="Czy AutoPilot jest darmowy?" data-en="Is AutoPilot free?">Czy AutoPilot jest darmowy?</summary>
+          <div class="faq-answer" data-pl="Tak. Pierwsze auto dodajesz i pilnujesz całkowicie za darmo. Jeśli masz więcej pojazdów, odblokowujesz nielimitowaną liczbę aut jedną opłatą 9,99 PLN — bez subskrypcji, na zawsze." data-en="Yes. Your first car is completely free to add and track. If you have more vehicles, you unlock an unlimited number of cars with a single 9.99 PLN payment — no subscription, forever.">Tak. Pierwsze auto dodajesz i pilnujesz całkowicie za darmo. Jeśli masz więcej pojazdów, odblokowujesz nielimitowaną liczbę aut jedną opłatą 9,99 PLN — bez subskrypcji, na zawsze.</div>
+        </details>
+        <details class="faq-item">
+          <summary data-pl="Czy AutoPilot wymaga konta lub logowania?" data-en="Does AutoPilot require an account or login?">Czy AutoPilot wymaga konta lub logowania?</summary>
+          <div class="faq-answer" data-pl="Nie. AutoPilot działa bez konta i bez logowania. Wszystkie dane są przechowywane lokalnie na Twoim telefonie." data-en="No. AutoPilot works without an account and without login. All data is stored locally on your phone.">Nie. AutoPilot działa bez konta i bez logowania. Wszystkie dane są przechowywane lokalnie na Twoim telefonie.</div>
+        </details>
+        <details class="faq-item">
+          <summary data-pl="Ile aut mogę dodać?" data-en="How many cars can I add?">Ile aut mogę dodać?</summary>
+          <div class="faq-answer" data-pl="Jedno auto jest darmowe. Po jednorazowej opłacie 9,99 PLN możesz dodać nielimitowaną liczbę pojazdów." data-en="One car is free. After a one-time 9.99 PLN payment you can add an unlimited number of vehicles.">Jedno auto jest darmowe. Po jednorazowej opłacie 9,99 PLN możesz dodać nielimitowaną liczbę pojazdów.</div>
+        </details>
+        <details class="faq-item">
+          <summary data-pl="Czy moje dane są wysyłane do chmury?" data-en="Is my data sent to the cloud?">Czy moje dane są wysyłane do chmury?</summary>
+          <div class="faq-answer" data-pl="Nie. Dane pojazdów zostają lokalnie na urządzeniu. Wyjątkiem jest opcjonalne pobranie danych z serwisu historiapojazdu.gov.pl, które uruchamiasz sam przy dodawaniu auta." data-en="No. Vehicle data stays locally on the device. The only exception is the optional data retrieval from historiapojazdu.gov.pl, which you trigger yourself when adding a car.">Nie. Dane pojazdów zostają lokalnie na urządzeniu. Wyjątkiem jest opcjonalne pobranie danych z serwisu historiapojazdu.gov.pl, które uruchamiasz sam przy dodawaniu auta.</div>
+        </details>
+        <details class="faq-item">
+          <summary data-pl="O jakich terminach przypomina AutoPilot?" data-en="What deadlines does AutoPilot remind me about?">O jakich terminach przypomina AutoPilot?</summary>
+          <div class="faq-answer" data-pl="AutoPilot przypomina o przeglądzie technicznym, ubezpieczeniu OC, wymianie oleju i zmianie opon — z wyprzedzeniem, żebyś zdążył się umówić." data-en="AutoPilot reminds you about technical inspections, motor insurance (OC), oil changes and tire swaps — in advance, so you have time to book.">AutoPilot przypomina o przeglądzie technicznym, ubezpieczeniu OC, wymianie oleju i zmianie opon — z wyprzedzeniem, żebyś zdążył się umówić.</div>
+        </details>
       </div>
     </section>
 
